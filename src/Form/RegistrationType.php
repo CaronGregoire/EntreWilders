@@ -41,7 +41,7 @@ class RegistrationType extends AbstractType
                     'class' => 'text-center border rounded-3 shadow-lg',
                     ]
     ])
-                ->add('password', PasswordType::class, [
+                ->add('plainPassword', PasswordType::class, [
                 'label' => 'Mot de passe',
                 'mapped' => false,
                 'attr' => [
