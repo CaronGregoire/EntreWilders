@@ -19,10 +19,11 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $user = new User();
-        $user->setNickname('');
-        $user->setFirstname('');
-        $user->setLastname('');
-        $user->setEmail('');
+        $user->setNickname('Greg');
+        $user->setFirstname('Grégoire');
+        $user->setLastname('Caron');
+        $user->setEmail('greg@greg.fr');
+        $user->setRoles(['ROLE_USER']);
         $hashedPassword = $this->passwordHasher->hashPassword(
             $user,
             'azerty'
@@ -31,10 +32,11 @@ class UserFixtures extends Fixture
         $manager->persist($user);
 
         $user2 = new User();
-        $user2->setNickname('');
-        $user2->setFirstname('');
-        $user2->setLastname('');
-        $user2->setEmail('');
+        $user2->setNickname('Seb');
+        $user2->setFirstname('Sébastien');
+        $user2->setLastname('Juchet');
+        $user2->setEmail('seb@seb.fr');
+        $user2->setRoles(['ROLE_USER']);
         $hashedPassword = $this->passwordHasher->hashPassword(
             $user2,
             'azerty'
