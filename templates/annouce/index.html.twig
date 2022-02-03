@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Announce index{% endblock %}
+
+{% block body %}
+    <h1>Announce index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Photo</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for announce in announces %}
+            <tr>
+                <td>{{ announce.id }}</td>
+                <td>{{ announce.title }}</td>
+                <td>{{ announce.description }}</td>
+                <td>{{ announce.price }}</td>
+                <td>{{ announce.photo }}</td>
+                <td>{{ announce.city }}</td>
+
+                <td>
+                    <a href="{{ path('annouce_show', {'id': announce.id}) }}">show</a>
+                    <a href="{{ path('annouce_edit', {'id': announce.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('annouce_new') }}">Create new</a>
+{% endblock %}

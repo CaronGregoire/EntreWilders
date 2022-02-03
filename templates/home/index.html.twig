@@ -11,4 +11,10 @@
             <h3 clas="display-5"> le site des petites annonces entre Wilders</h3>
         </div>
     </div>
+    <div class="container">
+        {% if is_granted('ROLE_USER') %}
+            <button type="button" class="btn"><a href="{{ path('annouce_new') }}">Déposer une nouvelle annonce</a></button>
+        {% endif %}
+    </div>
+
 {% endblock %}

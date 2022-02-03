@@ -3,7 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
@@ -22,6 +24,16 @@ class Category
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Announce", mappedBy="category")
+     */
+    private $announces;
+
+    public function __construct()
+    {
+        $this->announces = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +47,37 @@ class Category
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Announce
+     */
+    public function getAnnounces(): Collection
+    {
+        return $this->announces;
+    }
+
+    public function addAnnounce(Announce $announce): self
+    {
+        if (!$this->announces->contains($announce)) {
+            $this->announces[] = $announce;
+            $announce->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnounce(Announce $announce): self
+    {
+        if ($this->announces->contains($announce)) {
+            $this->announces->removeElement($announce);
+            // set the owning side to null (unless already changed)
+            if ($announce->getCategory() === $this) {
+                $announce->setCategory(null);
+            }
+        }
 
         return $this;
     }

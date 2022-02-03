@@ -28,11 +28,6 @@ class Announce
     private $description;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $price;
@@ -47,20 +42,16 @@ class Announce
     */
     private $city;
 
-    /**
-    * @ORM\Column(type="boolean")
-    */
-    private $active;
 
     /**
     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="ad")
-    * @ORM\JoinColumn(nullable=false)
+    * @ORM\JoinColumn(nullable=true)
     */
     private $user;
 
     /**
     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="ads")
-    * @ORM\JoinColumn(nullable=false)
+    * @ORM\JoinColumn(nullable=true)
     */
     private $category;
 
@@ -89,18 +80,6 @@ class Announce
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }
