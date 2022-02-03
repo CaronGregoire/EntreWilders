@@ -17,10 +17,10 @@
         {% endif %}
     </div>
     {% for announce in announces %}
-    <div>
-        <div class="card" style="width: 18rem;">
+    <div class="d-inline-flex">
+        <div class="card m-3 " style="width: 18rem;">
         <img src="{{ asset('build/images/canon.jpeg') }}" class="card-img-top" alt="...">
-            <div class="card-body">
+            <div class="card-body align">
                 <h5 class="card-title">{{  announce.title }}</h5>
                 <p class="card-text">{{ announce.description }}</p>
                 <a href="{{ path("announce_show", { id: announce.id }) }}">Voir l'annonce</a>
