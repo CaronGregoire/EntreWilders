@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Announce;
 use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,8 +18,11 @@ class HomeController extends AbstractController
     {
         $userRepository = $managerRegistry->getRepository(User::class);
         $users = $userRepository->findAll();
+        $announceRepository = $managerRegistry->getRepository(Announce::class);
+        $announces = $announceRepository->findAll();
         return $this->render('home/index.html.twig', [
-            'users' => '$users',
+            'users' => $users,
+            'announces' => $announces,
         ]);
     }
 }

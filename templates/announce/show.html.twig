@@ -19,10 +19,7 @@
                 <th>Description</th>
                 <td>{{ announce.description }}</td>
             </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ announce.createdAt ? announce.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
+
             <tr>
                 <th>Price</th>
                 <td>{{ announce.price }}</td>
@@ -35,16 +32,10 @@
                 <th>City</th>
                 <td>{{ announce.city }}</td>
             </tr>
-            <tr>
-                <th>Active</th>
-                <td>{{ announce.active ? 'Yes' : 'No' }}</td>
-            </tr>
+
         </tbody>
     </table>
 
-    <a href="{{ path('annouce_index') }}">back to list</a>
+    <a href="{{ path('home') }}">back to list</a>
 
-    <a href="{{ path('annouce_edit', {'id': announce.id}) }}">edit</a>
-
-    {{ include('annouce/_delete_form.html.twig') }}
 {% endblock %}

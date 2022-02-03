@@ -18,17 +18,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class AnnounceController extends AbstractController
 {
     /**
-     * @Route("/", name="annouce_index", methods={"GET"})
+     * @Route("/", name="announce_index", methods={"GET"})
      */
     public function index(AnnounceRepository $announceRepository): Response
     {
-        return $this->render('annouce/index.html.twig', [
+        return $this->render('announce/index.html.twig', [
             'announces' => $announceRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/new", name="annouce_new", methods={"GET", "POST"})
+     * @Route("/new", name="announce_new", methods={"GET", "POST"})
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -40,27 +40,27 @@ class AnnounceController extends AbstractController
             $entityManager->persist($announce);
             $entityManager->flush();
 
-            return $this->redirectToRoute('annouce_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('annouce/new.html.twig', [
+        return $this->renderForm('announce/new.html.twig', [
             'announce' => $announce,
             'form' => $form,
         ]);
     }
 
     /**
-     * @Route("/{id}", name="annouce_show", methods={"GET"})
+     * @Route("/{id}", name="announce_show", methods={"GET"})
      */
     public function show(Announce $announce): Response
     {
-        return $this->render('annouce/show.html.twig', [
+        return $this->render('announce/show.html.twig', [
             'announce' => $announce,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="annouce_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="announce_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Announce $announce, EntityManagerInterface $entityManager): Response
     {
@@ -82,7 +82,7 @@ class AnnounceController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="annouce_delete", methods={"POST"})
+     * @Route("/{id}", name="announce_delete", methods={"POST"})
      */
     public function delete(Request $request, Announce $announce, EntityManagerInterface $entityManager): Response
     {
@@ -91,6 +91,6 @@ class AnnounceController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('annouce_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('announce_index', [], Response::HTTP_SEE_OTHER);
     }
 }

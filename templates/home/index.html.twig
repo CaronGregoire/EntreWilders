@@ -13,8 +13,14 @@
     </div>
     <div class="container">
         {% if is_granted('ROLE_USER') %}
-            <button type="button" class="btn"><a href="{{ path('annouce_new') }}">Déposer une nouvelle annonce</a></button>
+            <button type="button" class="btn"><a href="{{ path('announce_new') }}">Déposer une nouvelle annonce</a></button>
         {% endif %}
     </div>
+    {% for announce in announces %}
+    <div>
+        <h2>{{ loop.index }} / {{ announce.title }}</h2>
 
+        <a href="{{ path("announce_show", { id: announce.id }) }}">Voir l'annonce</a>
+    </div>
+   {% endfor %}
 {% endblock %}
