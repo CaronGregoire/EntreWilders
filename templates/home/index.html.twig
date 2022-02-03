@@ -18,9 +18,14 @@
     </div>
     {% for announce in announces %}
     <div>
-        <h2>{{ loop.index }} / {{ announce.title }}</h2>
-
-        <a href="{{ path("announce_show", { id: announce.id }) }}">Voir l'annonce</a>
+        <div class="card" style="width: 18rem;">
+        <img src="{{ asset('build/images/canon.jpeg') }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{  announce.title }}</h5>
+                <p class="card-text">{{ announce.description }}</p>
+                <a href="{{ path("announce_show", { id: announce.id }) }}">Voir l'annonce</a>
+            </div>
+        </div>
     </div>
    {% endfor %}
 {% endblock %}
